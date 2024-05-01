@@ -1,9 +1,0 @@
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: teamX
-  description: A group of people
-spec:
-  owner:
-    kind: User
-    name: Pranav

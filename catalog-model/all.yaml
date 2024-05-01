@@ -7,7 +7,6 @@ spec:
   targets:
     - ./all-apis.yaml
     - ./all-components.yaml
-    - ./all-teams.yaml
     # - ./all-domains.yaml
     # - ./all-resources.yaml
     # - ./all-systems.yaml
