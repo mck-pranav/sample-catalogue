@@ -1,0 +1,125 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: Customer-Service-Api
+  description: Api definition for service for customer
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: teamX
+  definition: |
+    {
+      "openapi": "3.0.1",
+      "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+      },
+      "servers": [
+        {
+          "url": "http://localhost:9006",
+          "description": "Generated server url"
+        }
+      ],
+      "paths": {
+        "/api/v1/customer": {
+          "post": {
+            "tags": [
+              "customer-controller"
+            ],
+            "operationId": "createCustomer",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CustomerRequest"
+                  }
+                }
+              },
+              "required": true
+            },
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "*/*": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/v1/customer/{customerId}": {
+          "get": {
+            "tags": [
+              "customer-controller"
+            ],
+            "operationId": "getCustomer",
+            "parameters": [
+              {
+                "name": "customerId",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "*/*": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "CustomerRequest": {
+            "type": "object",
+            "properties": {
+              "customerNumber": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "legal_name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "mobile_phone_number": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "date_of_birth": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "relationship_status": {
+                "type": "string"
+              },
+              "dependants": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "highest_education_attained": {
+                "type": "string"
+              },
+              "employment_status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }

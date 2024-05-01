@@ -1,0 +1,121 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: Account-Service-Api
+  description: Api definition for service for Accounts
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: teamX
+  definition: |
+    {
+      "openapi": "3.0.1",
+      "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+      },
+      "servers": [
+        {
+          "url": "http://localhost:9005",
+          "description": "Generated server url"
+        }
+      ],
+      "paths": {
+        "/api/v1/savingsaccounts": {
+          "get": {
+            "tags": [
+              "savings-account-controller"
+            ],
+            "operationId": "getAllSavingsAccounts",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "*/*": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "post": {
+            "tags": [
+              "savings-account-controller"
+            ],
+            "operationId": "createSavingsAccount",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SavingsAccountRequest"
+                  }
+                }
+              },
+              "required": true
+            },
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "*/*": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/v1/savingsaccounts/{savingsId}": {
+          "get": {
+            "tags": [
+              "savings-account-controller"
+            ],
+            "operationId": "getSavingsAccount",
+            "parameters": [
+              {
+                "name": "savingsId",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "*/*": {
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "SavingsAccountRequest": {
+            "type": "object",
+            "properties": {
+              "product_code": {
+                "type": "string"
+              },
+              "user_id": {
+                "type": "string"
+              },
+              "customer_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }

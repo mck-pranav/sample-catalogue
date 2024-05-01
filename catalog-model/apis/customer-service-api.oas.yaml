@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: Express Router API
+  description: |
+    This API documentation describes the endpoints defined in the Express router.
+  version: 1.0.0
+servers:
+  - url: localhost:9002/camel/api/v1
+      description: Optional server description, e.g. Main (production) server
+paths:
+  /customers:
+    post:
+      summary: Create a new customer
+      operationId: createCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                legal_name:
+                  type: string
+                customerNumber:
+                  type: integer
+                email:
+                  type: string
+                  format: email
+                mobile_phone_number:
+                  type: string
+                  pattern: '^\d{10}$'
+      responses:
+        '201':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customerId:
+                    type: integer
+                  customerNumber:
+                    type: integer
+                  legalName:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+                  mobilePhoneNumber:
+                    type: integer
+                  dateOfBirth:
+                    type: string
+                    format: date
+                  relationshipStatus:
+                    type: string
+                  dependants:
+                    type: integer
+                  highestEducationAttained:
+                    type: string
+                  employmentStatus:
+                    type: string
+        '400':
+          description: Bad request. Invalid input provided.
