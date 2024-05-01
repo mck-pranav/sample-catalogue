@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: my-group
+  description: A group of people
+spec:
+  owner:
+    kind: User
+    name: Pranav
